@@ -32,6 +32,65 @@ class Database
 
 
 
+    /***
+     * Selec All
+     */
+    public function selectAll(string $sql, array $values = []) 
+    {
+        // preapre sql statement
+        $stmt = $this->conn->prepare($sql);
+
+        // bind values
+        foreach ($values as $key => $value) {
+            $stmt->bindValue($key + 1, $value);
+        }
+        // execute query
+        if ($stmt->execute())
+            return false;
+        // retreave data from database
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    }
+
+    /***
+     * Select one item
+     */
+    public function select(string $sql, array $values = []) 
+    {
+        // preapre sql statement
+        $stmt = $this->conn->prepare($sql);
+
+        // bind values
+        foreach ($values as $key => $value) {
+            $stmt->bindValue($key + 1, $value);
+        }
+        // execute query
+        if ($stmt->execute())
+            return false;
+        // retreave data from database
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Create Data
+     */
+    public function do(string $sql, array $values = []) 
+    {
+        // preapre sql statement
+        $stmt = $this->conn->prepare($sql);
+
+        // bind values
+        foreach ($values as $key => $value) {
+            $stmt->bindValue($key + 1, $value);
+        }
+        // execute query
+        $stmt->execute();
+        // return true or false
+        return $stmt->rowCount();
+    }
+
+ 
+
 
 
 }

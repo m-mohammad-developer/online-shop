@@ -5,10 +5,16 @@
  */
 
 /* Global Styles */
-
+@font-face{
+    font-family:'iransans';
+       src:url('../fonts/IRANSans.eot') format('eot'),
+           url('../fonts/IRANSans.woff') format('woff'),
+           url('../fonts/IRANSans.ttf') format('truetype');
+}
 body {
     margin-top: 100px;
     background-color: #222;
+    font-family: iransans !important;
 }
 
 @media(min-width:768px) {
