@@ -49,7 +49,8 @@
                         $pp->photo = "My asd2322 P Photo";
                         $pp->stock = 849;
 
-                        // date()
+                        // date() C:/xampp/htdocs/shop/uploads/products/Capture.PNG
+                        $path = UPLOAD_DIR . DS . "products/1.PNG";
                         
                         // var_dump($pp->save());
                     ?>

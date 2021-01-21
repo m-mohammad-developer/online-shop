@@ -43,7 +43,7 @@ if(isset($_POST['delete'])) {
             echo '<div class="alert alert-warning"> مشکلی در حذف دسته بندی پیش آمد </div>';
         }
     }
-}
+} 
 
 if(isset($_POST['update'])) {
     // include("?edit-categories.php&action=edit-categories&id={$_POST['cat_id']}");

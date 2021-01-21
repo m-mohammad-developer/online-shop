@@ -1,5 +1,32 @@
+<?php use classes\Utility, classes\Product, classes\Category; ?>
+<?php 
 
+if (isset($_POST['create_product'])) {
 
+    $product = new Product();
+
+    $product->title = $_POST['title'];
+    $product->description = $_POST['description'];
+    $product->cat_id = $_POST['cat_id'];
+    $product->price = $_POST['price'];
+    $product->photo = $_FILES['photo']['name'];
+    $product->stock = $_POST['stock'];
+
+    if ($product->uploadPhoto($_FILES['photo'])) {
+        try {
+            $product->saveWithPhoto();
+            Utility::redirect("products.php");
+        } catch (PDOException $e) {
+            var_dump($e->getMessage());
+        } 
+    } else {
+        echo "problem in uploading photo";
+        print_r($product->getUploadErrors());
+    }
+    
+}
+
+?>
 <div class="row">
 
     <form action="" method="post" enctype="multipart/form-data">
@@ -16,9 +43,13 @@
         <hr />
         <div class="form-group">
             <label for="cat">انتخاب دسته بندی</label>
-            <select class="form-control" name="category" id="">
-                <option value="9">موبایل</option>
-                <option value="8">لپتاب</option>
+            <select class="form-control" name="cat_id" id="">
+                <?php
+                $cats = Category::findAll();
+                foreach ($cats as $cat):
+                ?>
+                <option value="<?php echo $cat->id; ?>"><?php echo $cat->title; ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
 
@@ -37,17 +68,14 @@
             <input type="file" name="photo" class="form-control">
         </div>
 
-
         <br />
         <br />
-
 
         <div class="form-group">
-            <button type="submit" name="create_post" class="btn btn-block btn-primary"> افزودن محصول به فروشگاه</button>
+            <button type="submit" name="create_product" class="btn btn-block btn-primary"> افزودن محصول به فروشگاه</button>
         </div>
 
         <br /><br /><br />
         <br /><br /><br />
     </form>
-
 </div>

@@ -57,24 +57,18 @@
                         </ul>
                     </li>
 
-
-                    <li class="active">
-                        <a href="products.php"><i class="fa fa-fw fa-user"></i> محصولات</a>
-                    </li>
-
-                    
-
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> کشو <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#product"><i class="fa fa-fw fa-arrows-v"></i>  محصولات <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="product" class="collapse">
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="products.php"> مشاهده</a>
                             </li>
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="products.php?action=add-products"> افزودن</a>
                             </li>
                         </ul>
                     </li>
+
                     <li class="active">
                         <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> راست</a>
                     </li>

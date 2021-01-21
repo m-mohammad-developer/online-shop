@@ -9,6 +9,12 @@ class Main
 
     // properties of class (in database)
 
+    protected static $db_columns = ['title', 'description', 'cat_id', 'price', 'photo', 'stock', 'created_at'];
+
+
+
+
+
 
     /*********************** Methods *************************** */
 
@@ -31,13 +37,13 @@ class Main
     /**
      * DB Connectors
      */
-    public static function findAllQuery(string $sql, array $values = [], $class)
+    protected static function findAllQuery(string $sql, array $values = [], $class)
     {
         global $conn;
         return $conn->selectAll($sql, $values, $class);
     }
 
-    public static function findQuery(string $sql, array $values = [], $class)
+    protected static function findQuery(string $sql, array $values = [], $class)
     {
         global $conn;
         return $conn->select($sql, $values, $class);
@@ -82,7 +88,6 @@ class Main
     public function delete()
     {
         global $conn;
-        // DELETE FROM `categories` WHERE 0
         $sql = "DELETE FROM ". static::$db_name . " where ". static::$auto_inc ." = ". $this->id;
         
         return $conn->do($sql);
@@ -108,7 +113,10 @@ class Main
         $prop_db = [];
         foreach ($properties as $key => $value) {
             if($key == 'id' || $key == 'created_at') continue;
-            $prop_db[$key] = "?";
+
+            if (in_array($key, static::$db_columns)) {
+                $prop_db[$key] = "?";
+            }
         }
         return $prop_db;
 
@@ -121,7 +129,10 @@ class Main
         $prop_db = [];
         foreach ($properties as $key => $value) {
             if($key == 'id' || $key == 'created_at') continue;
-            $prop_db[] = $value;
+
+            if (in_array($key, static::$db_columns)) {
+                $prop_db[] = $value;
+            }
         }
         return $prop_db;
     }

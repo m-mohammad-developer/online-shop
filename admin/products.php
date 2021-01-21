@@ -44,6 +44,7 @@
                     default:
                         include(VIEW_PATH . "products/view-products.php");
                         break;
+                        
                 }
 
 
