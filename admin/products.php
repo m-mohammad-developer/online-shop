@@ -31,16 +31,17 @@
                 <?php
 
                 if (isset($_GET['action'])) 
-                    $source = $_GET['action'];
+                    $action = $_GET['action'];
                 else 
-                    $source = "";
-
+                    $action = "";
                 
-                switch ($source) {
+                switch ($action) {
                     case 'add-products':
                         include(VIEW_PATH . "products/add-products.php");
                         break;
-                    
+                case 'edit-products':
+                    include(VIEW_PATH . "products/edit-products.php");
+                    break;
                     default:
                         include(VIEW_PATH . "products/view-products.php");
                         break;

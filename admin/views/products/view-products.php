@@ -1,4 +1,4 @@
-<?php use classes\Product, classes\Category; ?>
+<?php use classes\Product, classes\Category, classes\Utility; ?>
 <?php $products = Product::findAll(); ?>
 
 <?php $products = Product::findAll(); ?>
@@ -59,6 +59,6 @@ if(isset($_POST['delete'])) {
 
 if(isset($_POST['update'])) {
     // include("?edit-categories.php&action=edit-categories&id={$_POST['cat_id']}");
-    classes\Utility::redirect("?edit-products.php&action=edit-products&id={$_POST['product_id']}");
+    Utility::redirect("?action=edit-products&id={$_POST['product_id']}");
 }
 ?>

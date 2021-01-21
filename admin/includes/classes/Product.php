@@ -6,7 +6,6 @@ class Product extends Main
     protected static $class_name = "classes\Product";
     protected static $db_name = "products";
     protected static $auto_inc = "id";
-
     /** Database Properties **/
     public $id;
     public $title;
@@ -18,11 +17,8 @@ class Product extends Main
     public $created_at;
 
     /*** Upload photo Properties ***/
-
     protected $photo_name;
     protected $photo_tmp;
-
-
     /** Upload photo errors */
 
     protected static $upload_directory =  "products";
@@ -40,7 +36,6 @@ class Product extends Main
     );
 
     /*********************** Methods *************************** */
-
     /**
      *  set $_FILES variable's indexes to properties
      */
@@ -61,29 +56,26 @@ class Product extends Main
         }
     }
     */
-
-
-
     public function uploadPhoto($photo)
     {
         if (!isset($photo['name']) || !isset($photo['tmp_name'])) {
             $this->errors[] = "عکس در دسترس نیست";
             return false;
         }
-
         if (!empty($this->errors)) {
             return false;
         }
         $target_path = UPLOAD_DIR . DS . static::$upload_directory;
         
         if (move_uploaded_file($photo['tmp_name'], $target_path . DS . $photo['name'])) {
+            // die("upload successfuly");
             return true;
         } else {
             $this->errors[] = "مشکلی در آپلود فایل بوجود آمد دسترسی خود را بررسی کنید";
+            // die("upload Failed");
             return false;
         }
     }
-
 
     public function CreateWithPhoto()
     {
@@ -93,25 +85,26 @@ class Product extends Main
             return false;
     }
 
-
-
-    public function UpdateWithPhoto($new_photo)
+    public function updateWithPhoto($new_photo = null, $old_photo = null)
     {
-        $photo_path = $this->upload_directory . DS . $this->photo;
+        $photo_path = UPLOAD_DIR . DS . "products" . DS . $old_photo;
 
         if ($this->uploadPhoto($new_photo))
         {
-            if ($this->update()) {
+            unlink($photo_path);
+            if ($this->save()) {
+                // die("File Upload Success");
                 return true;
             }
         }
         return false;
     }
 
-    public function saveWithPhoto($new_photo = null)
+    public function saveWithPhoto($new_photo = null, $old_photo = null)
     {
         if (isset($this->id)) {
-            return $this->update($new_photo);
+            // return ($new_photo) ? $this->updateWithPhoto($new_photo) : $this->update();
+            return $this->updateWithPhoto($new_photo, $old_photo);
         } else {
             return $this->create();
         }
@@ -121,23 +114,12 @@ class Product extends Main
     {
         $target_path = UPLOAD_DIR . DS . "products" . DS . $this->photo;
 
-        
         if ($this->delete()) {
             unlink($target_path);
             return true;
         } 
         return false;
     }
-
-
-
-
-
-
-
-
-
-
 
     /*** helper functions  ***/
     public function getUploadErrors()

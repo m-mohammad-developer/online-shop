@@ -47,7 +47,7 @@ if(isset($_POST['delete'])) {
 
 if(isset($_POST['update'])) {
     // include("?edit-categories.php&action=edit-categories&id={$_POST['cat_id']}");
-    Utility::redirect("?edit-categories.php&action=edit-categories&id={$_POST['cat_id']}");
+    Utility::redirect("?action=edit-categories&id={$_POST['cat_id']}");
 }
 ?>
 
