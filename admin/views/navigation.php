@@ -44,13 +44,28 @@
                     <li>
                         <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> داشبورد</a>
                     </li>
-                    <li class="active">
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#cat"><i class="fa fa-fw fa-arrows-v"></i> دسته بندی ها <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="cat" class="collapse">
+                            <li>
+                                <a href="categories.php"> مشاهده</a>
+                            </li>
+                            <li>
+                                <a href="categories.php?action=add-categories"> افزودن</a>
+                            </li>
+                        </ul>
                     </li>
 
 
+                    <li class="active">
+                        <a href="products.php"><i class="fa fa-fw fa-user"></i> محصولات</a>
+                    </li>
+
+                    
+
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> کشو <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="#">Dropdown Item</a>
@@ -61,7 +76,7 @@
                         </ul>
                     </li>
                     <li class="active">
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> راست</a>
                     </li>
                 </ul>
             </div>
