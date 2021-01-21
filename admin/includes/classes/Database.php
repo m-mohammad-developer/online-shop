@@ -23,7 +23,7 @@ class Database
 
         try {
             $this->conn = new \PDO("mysql:host=$this->host;dbname=$this->name;charset=utf8", $this->user, $this->pass, $this->options);
-
+            // $this->conn->setAttribute(ATTR_F)
         } catch (\PDOException $e) {
             die("Database Failed :: " . $e->getMessage());
         }
@@ -35,7 +35,7 @@ class Database
     /***
      * Selec All
      */
-    public function selectAll(string $sql, array $values = []) 
+    public function selectAll(string $sql, array $values = [], string $class) 
     {
         // preapre sql statement
         $stmt = $this->conn->prepare($sql);
@@ -45,17 +45,17 @@ class Database
             $stmt->bindValue($key + 1, $value);
         }
         // execute query
-        if ($stmt->execute())
+        if (!$stmt->execute())
             return false;
         // retreave data from database
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll(PDO::FETCH_CLASS, $class);
 
     }
 
     /***
      * Select one item
      */
-    public function select(string $sql, array $values = []) 
+    public function select(string $sql, array $values = [], string $class) 
     {
         // preapre sql statement
         $stmt = $this->conn->prepare($sql);
@@ -65,14 +65,18 @@ class Database
             $stmt->bindValue($key + 1, $value);
         }
         // execute query
-        if ($stmt->execute())
+        if (!$stmt->execute())
             return false;
+
+        // Set Fetch Style
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
         // retreave data from database
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch();
     }
 
     /**
-     * Create Data
+     * Create/Update Data
+     * 
      */
     public function do(string $sql, array $values = []) 
     {

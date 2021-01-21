@@ -29,6 +29,33 @@
                 </div>
                 <!-- /.row -->
 
+                <div class="row">
+                <pre style="direction: ltr;">
+                    <?php
+                        use classes\Product;
+
+                        // $p = Product::findAll();
+                        // // var_dump($p);
+                        // $pr = Product::findById(1);
+                        // var_dump($pr);
+                        // var_dump(Product::properties());
+
+                        // $pp = Product::findById(3);
+                        $pp = new Product();
+                        // $id, $title, $description, $price, $photo, $stock, $created_at
+                        $pp->title = "My 465464 P Title";
+                        $pp->description = "My 33 P Description";
+                        $pp->price = 320000;
+                        $pp->photo = "My asd2322 P Photo";
+                        $pp->stock = 849;
+
+                        // date()
+                        
+                        // var_dump($pp->save());
+                    ?>
+                </pre>
+                </div>
+
 
 
 
