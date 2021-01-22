@@ -18,42 +18,21 @@
                 <div class="nav-collapse collapse">
                   <ul class="nav" id="mainNavigation">
                     <li class="dropdown active">
-                        <a href="index.html" class="dropdown-toggle"> خانه <b class="caret"></b> </a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown active">
-                                <a href="index.html"><i class="icon-caret-left pull-right visible-desktop"></i> رنگ های پوسته</a>
-                                <ul class="dropdown-menu">
-                                    <li class="active"><a href="index.html">پوسته پیش فرض</a></li>
-                                    <li><a href="index-grass-green.html">پوسته سبز چمنی</a></li>
-                                    <li><a href="index-oil-green.html">پوسته سبز روغنی</a></li>
-                                    <li><a href="index-gray.html">پوسته خاکستری</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="index-boxed-solid.html"><i class="icon-caret-left pull-right visible-desktop"></i> ورژن boxed</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="index-boxed-solid.html">Boxed - با رنگ پس زمینه ثابت</a></li>
-                                    <li><a href="index-boxed-pattern.html">Boxed - با پس زمینه الگو</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <a href="index.php"> خانه</a>
                     </li>
                     
                     <li class="dropdown">
                         <a href="shop.html" class="dropdown-toggle"> فروشگاه <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
-                            <li><a href="shop.html">قالب بندی پیش فرض</a></li>
-                            <li><a href="shop-no-sidebar.html">تمام صفحه</a></li>
-                            <li><a href="product.html">محصول تکی</a></li>
-                            <li><a href="shop-search.html">نتایج جستجو</a></li>
+                        <?php foreach(classes\Category::findAll() as $cat): ?>
+                            <li><a href="#"><?= $cat->title; ?></a></li>
+                        <?php endforeach; ?>
                         </ul>
                     </li>
+                    
                     <li class="dropdown">
                         <a href="blog.html" class="dropdown-toggle">بلاگ <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
-                            <li><a href="blog.html">قالب بندی پیش فرض</a></li>
-                            <li><a href="blog-single.html">تک نوشته</a></li>
-                            <li><a href="blog-search.html">نتایج جستجو</a></li>
                             <li><a href="404.html">صفحه 404</a></li>
                         </ul>
                     </li>
@@ -65,17 +44,6 @@
                                 <a href="features.html" class="dropdown-toggle"><i class="icon-caret-left pull-right visible-desktop"></i> همه امکانات</a>
                                 <ul class="dropdown-menu">
                                     <li><a href="features.html#headings">سرخط ها</a></li>
-                                    <li><a href="features.html#alertBoxes">جعبه های هشدار</a></li>
-                                    <li><a href="features.html#tabs">تب ها</a></li>
-                                    <li><a href="features.html#buttons">دکمه ها</a></li>
-                                    <li><a href="features.html#toggles">تاگل ها</a></li>
-                                    <li><a href="features.html#quotes">نقل قول ها</a></li>
-                                    <li><a href="features.html#gallery">گرید های گالری</a></li>
-                                    <li><a href="features.html#code">کد</a></li>
-                                    <li><a href="features.html#columns">ستون ها</a></li>
-                                    <li><a href="features.html#maps">نقشه ها</a></li>
-                                    <li><a href="features.html#progress">نوار های پیشرفت</a></li>
-                                    <li><a href="features.html#tables">جداول</a></li>
                                 </ul>
                             </li>
                         </ul>

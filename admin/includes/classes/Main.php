@@ -44,10 +44,11 @@ class Main
             $values[] = $arr[2];
         }
         
-        if (!$limit)
+        if (!isset($limit))
             return static::findAllQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . " ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
         else
-            return static::findAllQuery("Select * from ". static::$db_name . " where " . implode(', ', $items)  . " Limit $limit ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
+            return static::findAllQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . "LIMIT {$limit} ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
+
 
     }
 
