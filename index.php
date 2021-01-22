@@ -78,10 +78,12 @@
                     <div class="slide">
                         <div class="row">
                     	 
-                    	 
+                        <?php   
+                        $products = classes\Product::findAllWhere([['cat_id', '=', 1]]);
+                        ?>
                     	
                     	 
-                	            	
+                	    <?php foreach ($products as $product): ?>
     	            	<!--  ==========  -->
     					<!--  = Product =  -->
     					<!--  ==========  -->
@@ -89,99 +91,23 @@
     	            	    <div class="product">
     	            	        <div class="product-img featured">
     	            	            <div class="picture">
-    	            	        	    <img src="images/dummy/featured-products/featured-1.png" alt="" width="518" height="358" />
+    	            	        	    <img src="<?php echo $product->getPhotoPath(); ?>" alt="" width="518" height="358" />
     	            	        		<div class="img-overlay">
-    	            	        		    <a href="#" class="btn more btn-primary">توضیحات بیشتر</a>
+    	            	        		    <a href="product.php?id=<?= $product->id; ?>" class="btn more btn-primary">توضیحات بیشتر</a>
     	            	        		    <a href="#" class="btn buy btn-danger">خرید</a>
     	            	        		</div>
     	            	            </div>
     	            	        </div>
     	            	        <div class="main-titles">
-    	            	            <h4 class="title">$115</h4>
-    	            	            <h5 class="no-margin">محصول ویژه 652</h5>
+    	            	            <h4 class="title"><?= $product->price; ?> تومان</h4>
+    	            	            <h5 class="no-margin"><?= $product->title; ?></h5>
     	            	        </div>
-    	            	        <p class="desc">توضیحاتی که در مورد محصول لازم است را در اینجا مینویسید</p>
-    	            	        <p class="center-align stars">
-                    	            <span class="icon-star stars-clr"></span>
-                    	            <span class="icon-star stars-clr"></span>
-                    	            <span class="icon-star stars-clr"></span>
-                    	            <span class="icon-star stars-clr"></span>
-                    	            <span class="icon-star stars-clr"></span>
-                    	             
-                    	        </p>
+    	            	        <p class="desc"><?= substr($product->description, 0, 56); ?></p>
     	            	    </div>
                 	      </div> <!-- /product -->
-    	            	 
-                    	 
+                    	<?php endforeach; ?>
                     	
-                    	 
-                	            	
-    	            	<!--  ==========  -->
-    					<!--  = Product =  -->
-    					<!--  ==========  -->
-    	            	<div class="span4">
-    	            	    <div class="product">
-    	            	        <div class="product-img featured">
-    	            	            <div class="picture">
-    	            	        	    <img src="images/dummy/featured-products/featured-2.png" alt="" width="518" height="358" />
-    	            	        		<div class="img-overlay">
-    	            	        		    <a href="#" class="btn more btn-primary">توضیحات بیشتر</a>
-    	            	        		    <a href="#" class="btn buy btn-danger">خرید</a>
-    	            	        		</div>
-    	            	            </div>
-    	            	        </div>
-    	            	        <div class="main-titles">
-    	            	            <h4 class="title">$91</h4>
-    	            	            <h5 class="no-margin">محصول ویژه 735</h5>
-    	            	        </div>
-    	            	        <p class="desc">توضیحاتی که در مورد محصول لازم است را در اینجا مینویسید</p>
-    	            	        <p class="center-align stars">
-                    	            <span class="icon-star stars-clr"></span>
-                    	            <span class="icon-star"></span>
-                    	            <span class="icon-star"></span>
-                    	            <span class="icon-star"></span>
-                    	            <span class="icon-star"></span>
-                    	             
-                    	        </p>
-    	            	    </div>
-                	      </div> <!-- /product -->
-    	            	 
-                    	 
-                    	
-                    	 
-                	            	
-    	            	<!--  ==========  -->
-    					<!--  = Product =  -->
-    					<!--  ==========  -->
-    	            	<div class="span4">
-    	            	    <div class="product">
-    	            	        <div class="product-img featured">
-    	            	            <div class="picture">
-    	            	        	    <img src="images/dummy/featured-products/featured-3.png" alt="" width="518" height="358" />
-    	            	        		<div class="img-overlay">
-    	            	        		    <a href="#" class="btn more btn-primary">توضیحات بیشتر</a>
-    	            	        		    <a href="#" class="btn buy btn-danger">خرید</a>
-    	            	        		</div>
-    	            	            </div>
-    	            	        </div>
-    	            	        <div class="main-titles">
-    	            	            <h4 class="title">$40</h4>
-    	            	            <h5 class="no-margin">محصول ویژه 387</h5>
-    	            	        </div>
-    	            	        <p class="desc">توضیحاتی که در مورد محصول لازم است را در اینجا مینویسید</p>
-    	            	        <p class="center-align stars">
-                    	            <span class="icon-star stars-clr"></span>
-                    	            <span class="icon-star stars-clr"></span>
-                    	            <span class="icon-star stars-clr"></span>
-                    	            <span class="icon-star stars-clr"></span>
-                    	            <span class="icon-star"></span>
-                    	             
-                    	        </p>
-    	            	    </div>
-                	      </div> <!-- /product -->
-    	            	 
-                    	 
-                    	
+            
                     	 
             	        </div>
             	    </div>

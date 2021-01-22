@@ -11,7 +11,7 @@ class Main
 
     protected static $db_columns = ['title', 'description', 'cat_id', 'price', 'photo', 'stock', 'created_at'];
 
-
+    // protected $errors_list = array();
 
 
 
@@ -24,6 +24,31 @@ class Main
     public static function findAll()
     {
         return static::findAllQuery("Select * from ". static::$db_name, [], static::$class_name);
+    }
+
+
+    /**
+     * Find Items with Condition
+     */
+    public static function findAllWhere(array $cond, $limit = null, $order = "desc")
+    {
+        /**
+         * {
+         *  ['feild', 'action', 'value']
+         * }
+         */
+        $items = [];
+        $values = [];
+        foreach ($cond as $arr) {
+            $items[] = $arr[0] . " " . $arr[1] . " ?";
+            $values[] = $arr[2];
+        }
+        
+        if (!$limit)
+            return static::findAllQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . " ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
+        else
+            return static::findAllQuery("Select * from ". static::$db_name . " where " . implode(', ', $items)  . " Limit $limit ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
+
     }
 
     /**

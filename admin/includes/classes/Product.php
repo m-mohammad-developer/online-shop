@@ -129,10 +129,12 @@ class Product extends Main
 
     public function getPhotoPath()
     {
-        return '../uploads/products/' . $this->photo;
+        return SITE_URL . DS . "uploads" . DS . static::$upload_directory . DS .  $this->photo;
     }
 
 
+
+    
 }
 
 

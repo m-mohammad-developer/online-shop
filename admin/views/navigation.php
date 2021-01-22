@@ -69,6 +69,21 @@
                         </ul>
                     </li>
 
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#users"><i class="fa fa-fw fa-users"></i>  کاربران <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="users" class="collapse">
+                            <li>
+                                <a href="users.php"> مشاهده کاربران معمولی</a>
+                            </li>
+                            <li>
+                                <a href="users.php?action=view-admins"> مشاهده ادمین ها</a>
+                            </li>
+                            <li>
+                                <a href="users.php?action=add-users"> افزودن</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="active">
                         <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> راست</a>
                     </li>

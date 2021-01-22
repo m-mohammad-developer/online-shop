@@ -6,7 +6,7 @@
 // site path
 !defined("SITE_ROOT") ? define("SITE_ROOT", "C:/xampp/htdocs/shop/") : "";
 // site url
-!defined("SITE_URL") ? define("SITE_URL", "localhost/shop/") : "";
+!defined("SITE_URL") ? define("SITE_URL", "http://localhost/shop") : "";
 // View Files Path
 !defined("VIEW_PATH") ? define("VIEW_PATH", SITE_ROOT . "admin/views/") : "";
 

@@ -5,11 +5,20 @@ if (isset($_POST['create_product'])) {
 
     $product = new Product();
 
+    
+
     $product->title = $_POST['title'];
     $product->description = $_POST['description'];
     $product->cat_id = $_POST['cat_id'];
     $product->price = $_POST['price'];
-    $product->photo = $_FILES['photo']['name'];
+
+
+    $photo_ext = end(explode(".",$_FILES['photo']['name']));
+    $photo_name = strtolower(rand(99, 9999) . "_photo." . $photo_ext);
+    $_FILES['photo']['name'] = $photo_name;
+    $product->photo = $photo_name;
+
+
     $product->stock = $_POST['stock'];
 
     if ($product->uploadPhoto($_FILES['photo'])) {
