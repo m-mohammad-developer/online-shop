@@ -12,7 +12,7 @@
                     <a class="brand" href="index.php">
                         <img src="images/logo.png" alt="Webmarket Logo" width="48" height="48" /> 
                         <span class="pacifico">Alix</span> 
-                        <span class="tagline">فروشگاه alix</span> 
+                        <span class="tagline"> خوش آمدید</span> 
                     </a>
                 </div>
                 

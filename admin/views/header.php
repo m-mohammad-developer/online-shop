@@ -1,4 +1,12 @@
-<?php include("includes/init.php"); ?>
+<?php
+
+use classes\Utility;
+
+include("includes/init.php"); ?>
+<?php 
+if (!isset($_SESSION['admin_info'])) classes\Utility::redirect(SITE_URL);
+// var_dump($_SESSION['admin_info']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -59,4 +59,24 @@ class User extends Main
     }
 
 
+    public static function login ($email, $password) {
+        global $conn;
+        $user = static::findWhere([['email', '=', $email]], 1);
+        if ($user) {
+            if (password_verify($password, $user->password)) {
+                return $_SESSION['user_info'] = [
+                    'id'      => $user->id ,
+                    'name'    => $user->name ,
+                    'email'   => $user->email ,
+                    'address' => $user->address ,
+                ];
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+
 }

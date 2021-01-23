@@ -53,6 +53,66 @@ class Admin extends Main
     }
 
 
+    /**
+     * Login part
+     */
+
+    public static function login2($email, $password)
+    {
+        global $database;
+        $sql = 'select * from admin_users where email = ? limit 1';
+
+        $user = $database->pdo->prepare($sql);
+        $user->bindValue(1, $email);
+        $user->execute();
+        $user = $user->fetch(\PDO::FETCH_OBJ);
+        if ($user) {
+            if (password_verify($password, $user->password)) {
+                $_SESSION['admin_info'] = [
+                    'id'          => $user->id ,
+                    'name'        => $user->name ,
+                    'email'       => $user->email ,
+                    'address'     => $user->role
+                ];
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+    public static function login ($email, $password) {
+        global $conn;
+        $user = static::findWhere([['email', '=', $email]], 1);
+        if ($user) {
+            if (password_verify($password, $user->password)) {
+                return $_SESSION['admin_info'] = [
+                    'id' => $user->id ,
+                    'name' => $user->name ,
+                    'email' => $user->email ,
+                ];
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function create(){
         global $conn;
         $sql = "INSERT INTO admin_users (name, email, password) values (?,?,?)";

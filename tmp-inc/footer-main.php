@@ -47,7 +47,7 @@
     <script src="js/prettyphoto/js/jquery.prettyPhoto.js" type="text/javascript"></script>
     
     <!--  = Google Maps API =  -->
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
     <script type="text/javascript" src="js/goMap/js/jquery.gomap-1.3.2.min.js"></script>
     
     <!--  = Custom JS =  -->

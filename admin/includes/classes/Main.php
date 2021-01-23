@@ -43,14 +43,40 @@ class Main
             $items[] = $arr[0] . " " . $arr[1] . " ?";
             $values[] = $arr[2];
         }
+    
         
+        // die("Select * from ". static::$db_name . " where " . implode(', ', $items) . " LIMIT {$limit} ORDER BY " . static::$auto_inc . " " . $order);
         if (!isset($limit))
             return static::findAllQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . " ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
         else
-            return static::findAllQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . "LIMIT {$limit} ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
-
+            return static::findAllQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . " ORDER BY " . static::$auto_inc . " $order LIMIT {$limit}", $values, static::$class_name);
 
     }
+
+
+    public static function findWhere(array $cond, $limit = null, $order = "desc")
+    {
+        /**
+         * {
+         *  ['feild', 'action', 'value']
+         * }
+         */
+        $items = [];
+        $values = [];
+        foreach ($cond as $arr) {
+            $items[] = $arr[0] . " " . $arr[1] . " ?";
+            $values[] = $arr[2];
+        }
+    
+        
+        // die("Select * from ". static::$db_name . " where " . implode(', ', $items) . " LIMIT {$limit} ORDER BY " . static::$auto_inc . " " . $order);
+        if (!isset($limit))
+            return static::findQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . " ORDER BY " . static::$auto_inc . " $order", $values, static::$class_name);
+        else
+            return static::findQuery("Select * from ". static::$db_name . " where " . implode(', ', $items) . " ORDER BY " . static::$auto_inc . " $order LIMIT {$limit}", $values, static::$class_name);
+
+    }
+
 
     /**
      * Find the row from Database By Id

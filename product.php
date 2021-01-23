@@ -98,15 +98,102 @@ $product_cat = Category::findById($product->cat_id);
                         <!--  ==========  -->
                         <!--  = Add to cart form =  -->
                         <!--  ==========  -->
-                        <form action="#" class="form form-inline clearfix">
+                        <?php
+                        // if (isset($_POST['add_to_cart'])) {
+                        //     $pr_id    = $_POST['product_id'];
+                        //     $pr_conut = $_POST['product_count'];
+                        //     $is_in_cart = false;
+                        //     if (isset($_SESSION['cart'])) {
+                        //         foreach ($_SESSION['cart'] as $cart) {
+                        //             foreach ($cart as $key => $val) {
+                        //                 if ($key == $pr_id) {
+                        //                     $is_in_cart = true;
+                        //                     break;
+                        //                 }
+                        //             }
+                        //         }
+                        //     }   
+
+                        //     if (!$is_in_cart) {
+                        //         $_SESSION['cart'] = array(
+                        //             $pr_id => $pr_conut
+                        //         );
+                        //         echo "<script>alert('محصول مورد نظر با موفقیت به سبد خرید اضافه شد');</script>";
+                        //     } else {
+                        //         echo "<script>alert('محصول مورد نظر در سبد خرید وجود دارد');</script>";
+                        //         // die;
+                        //     }
+
+                        // }
+
+                        // check if add-to-cart button is submitted
+                        if (isset($_POST['add_to_cart'])) {
+                            $pr_id    = $_POST['product_id'];
+                            $pr_conut = $_POST['product_count'];
+                            
+                            // check if session['cart'] exists
+                            if (isset($_SESSION['cart'])) {
+
+                                // get count of added products to $_SESSION
+                                $count = count($_SESSION['cart']);
+
+                                // get products id's from $_SESSION['cart']
+                                $product_ids = array_column($_SESSION['cart'], 'id');
+
+                                // add prodcut to $_SESSION if not exists
+                                if (!in_array($pr_id, $product_ids)) {
+                                    $_SESSION['cart'][$count] = [
+                                        'id'       => $_POST['product_id'],
+                                        'quantity' => $_POST['product_count']
+                                    ];
+                                    echo "<script>alert('محصول مورد نظر با موفقیت به سبد خرید اضافه شد');</script>";
+
+                                } 
+                                else {
+                                    // increase the quantity of existing product
+                                    for ($i=0; $i < count($product_ids); $i++) { 
+                                        if ($product_ids[$i] == $pr_id) {
+                                            $_SESSION['cart'][$i]['quantity'] += $pr_conut;
+                                            echo "<script>alert('تعداد مورد نظر در سبد خرید افزوده شد');</script>";
+                                        }
+                                    }
+
+                                }
+
+                            } else {
+                                // if $_SESSION['cart'] doesn't exist create $_SESSION['cart]
+                                // for first product with array key 0
+
+                                $_SESSION['cart'][0] = [
+                                    'id'       => $_POST['product_id'],
+                                    'quantity' => $_POST['product_count']
+                                ];
+                                echo "<script>alert('محصول مورد نظر با موفقیت به سبد خرید اضافه شد');</script>";
+                                
+                            }
+                            
+                            Utility::dd($_SESSION);
+
+
+                        }
+
+                         
+
+                        ?>
+                        <?php if(isset($_SESSION['user_info'])): ?>
+                        <form action="" class="form form-inline clearfix" method="post">
                             <div class="numbered">
-                            	<input type="text" name="num" value="1" class="tiny-size" />
+                                <input type="hidden" value="<?= $product->id; ?>" name="product_id">
+                            	<input type="text" value="1" class="tiny-size" name="product_count"/>
                             	<span class="clickable add-one icon-plus-sign-alt"></span>
                             	<span class="clickable remove-one icon-minus-sign-alt"></span>
                             </div>
                             &nbsp;
-                            <button class="btn btn-danger pull-right"><i class="icon-shopping-cart"></i> اضافه به سبد خرید</button>
+                            <button type="submit" class="btn btn-danger pull-right" name="add_to_cart"><i class="icon-shopping-cart"></i> اضافه به سبد خرید</button>
                         </form>
+                        <?php else: ?>
+                            <div>برای خرید باید ابتدا وارد شوید</div>
+                        <?php endif; ?>
                         
                         <hr />
                       
