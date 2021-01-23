@@ -40,7 +40,7 @@ $product_cat = Category::findById($product->cat_id);
 	                    </li>
 	                    <li><span class="icon-chevron-right"></span></li>
 	                    <li>
-	                        <a href="#"><?= $product_cat->title; ?></a>
+	                        <a href="category.php?id=<?= $product_cat->id; ?>"><?= $product_cat->title; ?></a>
 	                    </li>
 	                    
 	                </ul>
@@ -99,33 +99,7 @@ $product_cat = Category::findById($product->cat_id);
                         <!--  = Add to cart form =  -->
                         <!--  ==========  -->
                         <?php
-                        // if (isset($_POST['add_to_cart'])) {
-                        //     $pr_id    = $_POST['product_id'];
-                        //     $pr_conut = $_POST['product_count'];
-                        //     $is_in_cart = false;
-                        //     if (isset($_SESSION['cart'])) {
-                        //         foreach ($_SESSION['cart'] as $cart) {
-                        //             foreach ($cart as $key => $val) {
-                        //                 if ($key == $pr_id) {
-                        //                     $is_in_cart = true;
-                        //                     break;
-                        //                 }
-                        //             }
-                        //         }
-                        //     }   
-
-                        //     if (!$is_in_cart) {
-                        //         $_SESSION['cart'] = array(
-                        //             $pr_id => $pr_conut
-                        //         );
-                        //         echo "<script>alert('محصول مورد نظر با موفقیت به سبد خرید اضافه شد');</script>";
-                        //     } else {
-                        //         echo "<script>alert('محصول مورد نظر در سبد خرید وجود دارد');</script>";
-                        //         // die;
-                        //     }
-
-                        // }
-
+                
                         // check if add-to-cart button is submitted
                         if (isset($_POST['add_to_cart'])) {
                             $pr_id    = $_POST['product_id'];
@@ -147,7 +121,6 @@ $product_cat = Category::findById($product->cat_id);
                                         'quantity' => $_POST['product_count']
                                     ];
                                     echo "<script>alert('محصول مورد نظر با موفقیت به سبد خرید اضافه شد');</script>";
-
                                 } 
                                 else {
                                     // increase the quantity of existing product
@@ -171,26 +144,24 @@ $product_cat = Category::findById($product->cat_id);
                                 echo "<script>alert('محصول مورد نظر با موفقیت به سبد خرید اضافه شد');</script>";
                                 
                             }
-                            
-                            Utility::dd($_SESSION);
-
-
                         }
-
-                         
-
                         ?>
                         <?php if(isset($_SESSION['user_info'])): ?>
-                        <form action="" class="form form-inline clearfix" method="post">
-                            <div class="numbered">
-                                <input type="hidden" value="<?= $product->id; ?>" name="product_id">
-                            	<input type="text" value="1" class="tiny-size" name="product_count"/>
-                            	<span class="clickable add-one icon-plus-sign-alt"></span>
-                            	<span class="clickable remove-one icon-minus-sign-alt"></span>
-                            </div>
-                            &nbsp;
-                            <button type="submit" class="btn btn-danger pull-right" name="add_to_cart"><i class="icon-shopping-cart"></i> اضافه به سبد خرید</button>
-                        </form>
+
+                            <?php if($product->stock != 0): ?>
+                                <form action="" class="form form-inline clearfix" method="post">
+                                    <div class="numbered">
+                                        <input type="hidden" value="<?= $product->id; ?>" name="product_id">
+                                        <input type="text" value="1" class="tiny-size" name="product_count"/>
+                                        <span class="clickable add-one icon-plus-sign-alt"></span>
+                                        <span class="clickable remove-one icon-minus-sign-alt"></span>
+                                    </div>
+                                    &nbsp;
+                                    <button type="submit" class="btn btn-danger pull-right" name="add_to_cart"><i class="icon-shopping-cart"></i> اضافه به سبد خرید</button>
+                                </form>
+                            <?php else: ?>
+                                <div> موجودی محصول تمام شده است</div>
+                            <?php endif; ?>
                         <?php else: ?>
                             <div>برای خرید باید ابتدا وارد شوید</div>
                         <?php endif; ?>

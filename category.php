@@ -5,6 +5,7 @@
 <?php     
 try {
     $products = Product::findAllWhere([['cat_id', '=', $_GET['id']]], 2);
+    $category = Category::findById(1);
 } catch (PDOException $e) {
     
 }
@@ -36,7 +37,7 @@ try {
 	                    </li>
 	                    <li><span class="icon-chevron-right"></span></li>
 	                    <li>
-	                        <a href="shop-no-sidebar.html">همه محصولات (بدون سایدبار)</a>
+	                        <a href="category.php?id=<?= $category->id; ?>"><?= $category->title; ?></a>
 	                    </li>
 	                </ul>
         		</div>
@@ -98,7 +99,6 @@ try {
                                                 <img width="540" height="374" alt="" src="<?= $product->getPhotoPath(); ?>" />
                                                 <div class="img-overlay">
                                                     <a class="btn more btn-primary" href="product.php?id=<?= $product->id;?>">توضیحات بیشتر</a>
-                                                    <a class="btn buy btn-danger" href="product.php?id=<?= $product->id;?>">اضافه به سبد خرید</a>
                                                 </div>
                                             </div>
                                         </div>
