@@ -88,9 +88,9 @@ class Database
             $stmt->bindValue($key + 1, $value);
         }
         // execute query
-        $stmt->execute();
+        return $stmt->execute();
         // return true or false
-        return $stmt->rowCount();
+        // return $stmt->rowCount();
     }
 
  

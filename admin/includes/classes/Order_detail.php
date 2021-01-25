@@ -28,11 +28,7 @@ class Order_detail extends Main
     }
 
 
-    public static function findProducts($order_id)
-    {
-        
-
-    }
+    
 
     /**
      * Confirm ORder Details
@@ -44,7 +40,25 @@ class Order_detail extends Main
         return $conn->do($sql, [1, $order_id]);
     }
 
+    /**
+     * Regect order
+     */
+    public static function regectOrderDetails($order_id)
+    {
+        global $conn;
+        $sql = "UPDATE order_details SET is_confirmed = ? WHERE order_id = ?"; 
+        return $conn->do($sql, [0, $order_id]);
+    }
 
-
+    /**
+     * Delete Order_details
+     * 
+     */
+    public static function deleteOrderDetails($order_id)
+    {
+        global $conn;
+        $sql = "DELETE FROM order_details WHERE order_id = ?";
+        return $conn->do($sql, [$order_id]);
+    }
 
 }

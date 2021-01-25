@@ -9,11 +9,7 @@
         <!-- naviation end -->
 
         <div id="page-wrapper">
-
             <div class="container-fluid">
-
-
-
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -29,7 +25,6 @@
                 </div>
                 <!-- /.row -->
                 <?php
-
                 if (isset($_GET['action'])) 
                     $action = $_GET['action'];
                 else 
@@ -39,24 +34,15 @@
                     case 'view-order':
                         include(VIEW_PATH . "orders/view-order.php");
                         break;
-                
                     default:
                         include(VIEW_PATH . "orders/view-orders.php");
                         break;
-                        
                 }
-
-
-
                 ?>
             </div>
             <!-- /.container-fluid -->
-
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
-
-
 <?php include('views/footer.php'); ?>

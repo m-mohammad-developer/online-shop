@@ -105,15 +105,18 @@ $product_cat = Category::findById($product->cat_id);
                             $pr_id    = $_POST['product_id'];
                             $pr_conut = $_POST['product_count'];
                             
+                            if ($_POST['product_count'] > $product->stock) {
+                                echo "<script>alert('تعداد انتخابی بیشتر از موجودی انبار است');</script>";
+                                // redirect to same page
+                                echo "<script>location.replace('". SITE_URL . "/product.php?id=" . $product->id ."');</script>";
+                                exit;
+                            }
                             // check if session['cart'] exists
                             if (isset($_SESSION['cart'])) {
-
                                 // get count of added products to $_SESSION
                                 $count = count($_SESSION['cart']);
-
                                 // get products id's from $_SESSION['cart']
                                 $product_ids = array_column($_SESSION['cart'], 'id');
-
                                 // add prodcut to $_SESSION if not exists
                                 if (!in_array($pr_id, $product_ids)) {
                                     $_SESSION['cart'][$count] = [
@@ -132,9 +135,7 @@ $product_cat = Category::findById($product->cat_id);
                                     }
                                 }
                             } else {
-                                // if $_SESSION['cart'] doesn't exist create $_SESSION['cart]
-                                // for first product with array key 0
-
+                               
                                 $_SESSION['cart'][0] = [
                                     'id'       => $_POST['product_id'],
                                     'quantity' => $_POST['product_count']

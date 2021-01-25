@@ -1,18 +1,13 @@
 <?php
-
 use classes\Product;
 use classes\Utility;
 use classes\Order;
 use classes\Order_detail;
-
 include('tmp-inc/header-main.php'); ?> 
-
     <div class="master-wrapper">
-     
 	<?php
 	// delete product from shopping cart
 	if (filter_input(INPUT_GET, 'action') == 'delete') {
-		
 		// loop throgh items in $_SESSION['cart'] until find the product by id
 		foreach ($_SESSION['cart'] as $key => $product) {
 			if ($product['id'] == filter_input(INPUT_GET, 'id')) {
@@ -23,30 +18,17 @@ include('tmp-inc/header-main.php'); ?>
 		// reset $_SESSION['cart'] keys so they match with $product_ids of array
 		$_SESSION['cart'] = array_values($_SESSION['cart']);
 		Utility::redirect("cart.php");
-		
-		
 	} 
  	?>
-    <?php 
-	// create order details 
-	if (isset($_GET['next_step'])) {
-		
-	}
-	?>
-    
-    
     <div class="container">
-        <div class="row">
-            
+        <div class="row">      
             <!--  ==========  -->
             <!--  = Main content =  -->
             <!--  ==========  -->
             <section class="span12">
-                
                 <div class="checkout-container">
                     <div class="row">
                     	<div class="span10 offset1">
-                    	    
                     	    <!--  ==========  -->
 							<!--  = Header =  -->
 							<!--  ==========  -->
@@ -67,7 +49,6 @@ include('tmp-inc/header-main.php'); ?>
                     		    	</div>
                     		    </div>
                     		</header>
-                    		
                     		<!--  ==========  -->
 							<!--  = Steps =  -->
 							<!--  ==========  -->
@@ -76,25 +57,20 @@ include('tmp-inc/header-main.php'); ?>
 							<?php	
 							if (isset($_POST['send_track_code'])) {
 								$track_code = $_POST['track_code'];
-
                                 if (isset($_SESSION['order_detail']) && !empty($_SESSION['order_detail'])) {
                                     $_SESSION['order_detail']['track_code'] = $track_code;
-
                                     $order = new Order();
-
                                     $order->user_id     = $_SESSION['order_detail']['user_id'];
                                     $order->total_price = $_SESSION['order_detail']['total_price'];
 									$order->track_code  = $_SESSION['order_detail']['track_code'];
-									
+									// Utility::dd($order->makeOrder($_SESSION['order_detail']['prodcuts']));
 									if ($order->makeOrder($_SESSION['order_detail']['prodcuts'])) {
 										unset($_SESSION['cart']);
 										unset($_SESSION['order_detail']);
-										
 										echo "<script>alert('سفارش شما با موفقیت ثبت شد پس از تایید به آدرسی که در بخش کاربری خود ثبت کرده اید ارسال خواهد شد');</script>";
 										// echo "<script>alert(\"'window.location.href = \"";'\");</script>";
-										sleep(5);
+										// sleep(5);
 										Utility::redirect("index.php");
-		
 									}
                                 }
 							}

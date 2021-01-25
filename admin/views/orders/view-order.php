@@ -16,20 +16,21 @@ $user = User::findById($order->user_id);
 $order_products = Order_detail::findAllWhere([['order_id', '=', $_GET['id']]]);
 ?>
 <?php
-
 // Confirm Order by Id
 if (isset($_POST['confirm_order'])) {
     $order_id = $_POST['order_id'];
-
     $order = Order::findById($order_id);
-
-    $order->confirmOrder();
-
-   
+    if ($order->confirmOrder())
+        Utility::redirect("orders.php");
 }
 
+if (isset($_POST['regect_order'])) {
+    $order_id = $_POST['order_id'];
+    $order = Order::findById($order_id);
 
-
+    if ($order->deleteOrder())
+        Utility::redirect("orders.php"); 
+}
 ?>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -113,8 +114,6 @@ if (isset($_POST['confirm_order'])) {
 
             </table>
 
-
-
             <table class="table table-responsive">
 
                 <thead>
@@ -136,27 +135,18 @@ if (isset($_POST['confirm_order'])) {
                 </tbody>
 
              </table>
-
             </div>
-
             <div class="panel-footer">
                 <form action="" method="POST">
                     <input type="hidden" name="order_id" value="<?= $order->id; ?>">
                     <button type="submit" class="btn btn-block btn-success" name="confirm_order">تایید سفارش</button>
                 </form>
+                <form action="" method="POST">
+                    <input type="hidden" name="order_id" value="<?= $order->id; ?>">
+                    <button type="submit" class="btn btn-block btn-danger" name="regect_order"> رد سفارش و حذف</button>
+                </form>
             </div>
-        
         </div>
-
-        
     </div>
-
-  
 </div>
-
-<br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<br><br><br><br><br><br>

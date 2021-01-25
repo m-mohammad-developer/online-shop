@@ -1,6 +1,8 @@
 <?php
 namespace classes;
 
+use PDOException;
+
 class Product extends Main
 {
     protected static $class_name = "classes\Product";
@@ -132,7 +134,28 @@ class Product extends Main
         return SITE_URL . DS . "uploads" . DS . static::$upload_directory . DS .  $this->photo;
     }
 
-
+    /**
+     * to decrease stock in database
+     */
+    public static function decreseStock($product_id, $quantity, $action = "-")
+    {
+        global $conn;
+        // update query
+        if ($action == '-')
+            $sql = "UPDATE products SET stock = stock - ? WHERE ". static::$auto_inc ." = ?";
+        else
+            $sql = "UPDATE " . static::$db_name . " SET stock = stock + ? WHERE ". static::$auto_inc ." = ?";
+        // run query
+        try {
+            if ($conn->do($sql, [$quantity, $product_id])) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch(PDOException $e) {
+            return false;
+        }
+    }
 
     
 }
