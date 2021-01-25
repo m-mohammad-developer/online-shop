@@ -130,9 +130,7 @@ $product_cat = Category::findById($product->cat_id);
                                             echo "<script>alert('تعداد مورد نظر در سبد خرید افزوده شد');</script>";
                                         }
                                     }
-
                                 }
-
                             } else {
                                 // if $_SESSION['cart'] doesn't exist create $_SESSION['cart]
                                 // for first product with array key 0
@@ -142,7 +140,7 @@ $product_cat = Category::findById($product->cat_id);
                                     'quantity' => $_POST['product_count']
                                 ];
                                 echo "<script>alert('محصول مورد نظر با موفقیت به سبد خرید اضافه شد');</script>";
-                                
+                            
                             }
                         }
                         ?>

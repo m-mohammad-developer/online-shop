@@ -4,7 +4,7 @@ use classes\Utility;
 
 include("includes/init.php"); ?>
 <?php 
-if (!isset($_SESSION['admin_info'])) classes\Utility::redirect(SITE_URL);
+if (!isset($_SESSION['admin_info'])) classes\Utility::redirect(SITE_URL . DS . "login.php");
 // var_dump($_SESSION['admin_info']);
 ?>
 <!DOCTYPE html>

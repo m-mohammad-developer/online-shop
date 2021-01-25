@@ -36,14 +36,12 @@
                     $action = "";
                 
                 switch ($action) {
-                    case 'add-products':
-                        include(VIEW_PATH . "products/add-products.php");
+                    case 'view-order':
+                        include(VIEW_PATH . "orders/view-order.php");
                         break;
-                case 'edit-products':
-                    include(VIEW_PATH . "products/edit-products.php");
-                    break;
+                
                     default:
-                        include(VIEW_PATH . "products/view-products.php");
+                        include(VIEW_PATH . "orders/view-orders.php");
                         break;
                         
                 }

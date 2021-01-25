@@ -15,3 +15,7 @@
 
 !defined("SITE_TITLE") ? define("SITE_TITLE", "فروشگاه آنلاین") : "";
 !defined("ADMIN_TITLE") ? define("ADMIN_TITLE", "پنل مدیریت") : "";
+!defined("PAY_CART") ? define("PAY_CART", [
+    'name'   => "علی حسینی",
+    'number' => '6037998833221188'
+]) : "";

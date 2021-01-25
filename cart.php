@@ -8,6 +8,7 @@ include('tmp-inc/header-main.php'); ?>
     <div class="master-wrapper">
      
 	<?php
+	// Utility::dd($_SESSION);
 	// delete product from shopping cart
 	if (filter_input(INPUT_GET, 'action') == 'delete') {
 		
@@ -25,12 +26,7 @@ include('tmp-inc/header-main.php'); ?>
 		
 	} 
  	?>
-    <?php 
-	// create order details 
-	if (isset($_GET['next_step'])) {
-		
-	}
-	?>
+    
     
     
     <div class="container">
@@ -126,9 +122,25 @@ include('tmp-inc/header-main.php'); ?>
 											</td>
 										</tr>
 									<?php
+									// all product's price
 									$total = $total + ($product->price * $pr['quantity']);
 									endforeach; 
 									?>
+
+									<?php 
+									// create order details 
+									if (isset($_GET['next_step'])) {
+										if (!empty($_SESSION['cart'])) {
+											$_SESSION['order_detail'] = [
+												'user_id'     => $_SESSION['user_info']['id'],
+												'prodcuts'    => $_SESSION['cart'],
+												'total_price' => $total
+											];
+											Utility::redirect("cart2.php");
+										}
+									}
+									?>
+
 							        <tr>
 							        	<td colspan="2" rowspan="2">
 							        	    <div class=""></div>
@@ -147,8 +159,10 @@ include('tmp-inc/header-main.php'); ?>
 							<hr />
 							
 							<p class="right-align">
-							    در مرحله بعد جزیات سفارش را می بینید.
-							    <a href="checkout-step-2.html" class="btn btn-primary higher bold">ادامه</a>
+								در مرحله بعد جزیات سفارش را می بینید.
+								<form action="" method="get">
+							    	<button type="submit" class="btn btn-primary higher bold" name="next_step">ادامه</button>
+								</form>
 							</p>
                     	</div>
                     </div>

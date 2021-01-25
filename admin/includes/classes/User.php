@@ -51,11 +51,37 @@ class User extends Main
         }
     }
 
+    public function updateUserPassword(){
+        global $conn;
+        // encrypt password
+        $this->password = $this->encryptPassword();
+        // run query
+        try {
+            // update password sql
+            $sql = "UPDATE users SET password = ? WHERE id = ?";
+
+            if ($conn->do($sql, [$this->password, $this->id])) 
+                return true;
+            else 
+                return false;
+        } catch (\PDOException $e) {
+            $this->errors['update_user__pass_error'] = $e->getMessage();
+            return false;
+        }
+        return false;
+    }
+
 
     public function create(){
         global $conn;
         $sql = "INSERT INTO users (name, email, password, address) values (?,?,?,?)";
         return $conn->do($sql, [$this->name, $this->email, $this->password, $this->address]);
+    }
+
+    public function update(){
+        global $conn;
+        $sql = "UPDATE users SET name = ?, email = ?, address = ? Where id = ?";
+        return $conn->do($sql, [$this->name, $this->email, $this->address, $this->id]);
     }
 
 

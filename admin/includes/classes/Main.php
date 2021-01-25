@@ -13,10 +13,14 @@ class Main
 
     // protected $errors_list = array();
 
-
+    protected $errors;
 
 
     /*********************** Methods *************************** */
+
+    public function getErrors(){
+        return $this->errors;
+    }
 
     /**
      * Find All Rows in Database belongs to this class
