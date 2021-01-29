@@ -9,11 +9,18 @@ if (!isset($_GET['id']))
     Utility::redirect("orders.php");
 ?>
 <?php 
-$order = Order::findById($_GET['id']); 
-// user that have made the order
-$user = User::findById($order->user_id);
-// products of the order
-$order_products = Order_detail::findAllWhere([['order_id', '=', $_GET['id']]]);
+try {
+    if ($order = Order::findById($_GET['id'])) {
+        // user that have made the order
+        $user = User::findById($order->user_id);    
+        // products of the order
+        $order_products = Order_detail::findAllWhere([['order_id', '=', $_GET['id']]]);
+    }
+    
+} catch (PDOException $e) {
+    Utility::dd($e->getMessage());
+}
+
 ?>
 <?php
 // Confirm Order by Id
@@ -34,7 +41,7 @@ if (isset($_POST['regect_order'])) {
 ?>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-
+        <?php if(isset($user) && isset($order) && isset($order_products)): ?>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 جزییات محصول
@@ -147,6 +154,9 @@ if (isset($_POST['regect_order'])) {
                 </form>
             </div>
         </div>
+        <?php else: ?>
+            اطلاعات ورودی صحیح نمی باشند لطفا از حساب کاربری خود خارج شده و دوباره وارد شوید.
+        <?php endif; ?>
     </div>
 </div>
 <br><br><br><br><br><br>

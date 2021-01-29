@@ -9,6 +9,14 @@
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
 
+     <!-- orders page script  -->
+     <script>
+    $("#costume").click(function () {
+        $days = $("#days").val();
+        // console.log($days); 
+        location.replace("orders.php?action=view-orders&order=costume&days=" + $days);
+    });
+    </script>  
 </body>
 
 </html>

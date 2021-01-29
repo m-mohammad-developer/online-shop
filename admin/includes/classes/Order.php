@@ -19,9 +19,6 @@ class Order extends Main
     public $is_confirmed;
     public $created_at;
     
-    
-    
-
     /**
      *
      * products = [
@@ -72,8 +69,6 @@ class Order extends Main
     } // end method
 
 
-
-
     public function confirmOrder()
     {
         global $conn;
@@ -82,6 +77,11 @@ class Order extends Main
             /* Begin a transaction, turning off autocommit */
             $conn->conn->beginTransaction();
             if ($conn->do($sql, [1, $this->id]) && Order_detail::confirmOrderDetails($this->id)) {
+                // increase buy count in products table
+                $order_details = Order_detail::findAllWhere([['order_id', '=', $this->id]]);
+                foreach ($order_details as $order_detail) {
+                    Product::addBuyCount($order_detail->product_id, $order_detail->product_quantity);
+                }
                 $conn->conn->commit();
                 return true;
             } else {
@@ -135,19 +135,23 @@ class Order extends Main
         // delete order and suborders
         $this->regectOrder();
         $sql = "DELETE FROM orders WHERE id = ? limit 1";
-
         try {
             /* Begin a transaction, turning off autocommit */
             $conn->conn->beginTransaction();
+            // move order to deleted orders table
+            
             // delete order and then delete order details
             if ($conn->do($sql, [$this->id]) && Order_detail::deleteOrderDetails($this->id)) {
                 // save changes in db
+                $deleted_order = new Deleted_order();
+                $deleted_order->saveInDeleted($this);
                 $conn->conn->commit();
                 return true;
             }
             return false;
         } catch (PDOException $e) {
             $conn->conn->rollBack();
+            $this->errors['delete_order'] = $e->getMessage();
             return false;
         }
 

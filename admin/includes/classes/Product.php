@@ -16,6 +16,7 @@ class Product extends Main
     public $price;
     public $photo;
     public $stock;
+    public $buy_count;
     public $created_at;
 
     /*** Upload photo Properties ***/
@@ -155,6 +156,15 @@ class Product extends Main
         } catch(PDOException $e) {
             return false;
         }
+    }
+
+
+
+    public static function addBuyCount($product_id, $quantity)
+    {
+        global $conn;
+        $sql = "UPDATE products SET buy_count = buy_count + ? WHERE id = ?";
+        return $conn->do($sql, [$quantity, $product_id]);
     }
 
     

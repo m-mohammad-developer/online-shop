@@ -34,21 +34,19 @@ if (!isset($_SESSION['user_info'])) classes\Utility::redirect(SITE_URL . DS . "l
 <?php
 try {
     $user = classes\User::findById($_SESSION['user_info']['id']);
+    $orders = classes\Order::findAllWhere([['user_id', '=', $user->id]]);
 }catch (PDOException $e) {
     Utility::redirect('login.php');
 }
 ?>
 <div class="container-fluid">
-
     <div class="row">
-
         <div class="col-md-10 col-md-offset-1">
-
             <div class="panel panel-info">
                 <div class="panel-heading">
                     حساب کاربری
+                    <a href="index.php"><span class="pull-left text-danger">مشاهده سایت</span></a>
                 </div>
-
                 <div class="panel-body">
                     <table class="table table-responsive">
                     <thead> 
@@ -59,7 +57,6 @@ try {
                             <th>ایمیل</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <tr>
                             <td><?= $user->id; ?></td>
@@ -70,7 +67,6 @@ try {
                             <td><a href="?action=edit-user-pass">ویرایش پسورد</a></td>
                         </tr>
                     </tbody>
-
                     </table>
 
                     <?php if(isset($_GET['action']) && $_GET['action'] == 'edit-user'): ?>
@@ -99,7 +95,6 @@ try {
                         <?php
                         // update user information
                         if (isset($_POST['edit_user_info'])) {
-
                             $user->name = $_POST['name'];
                             $user->email = $_POST['email'];
                             $user->address = $_POST['address'];
@@ -109,13 +104,10 @@ try {
                                 Utility::redirect("user.php");
                             } catch (PDOException $e) {
                                 echo "<script>alert('مشکلی در ویرایش کاربر بوجود آمد لطفا بعد امتحان کنید');</script>";
-
                             }
                         }
                         ?>
                     <?php endif; ?>
-
-
                     <?php if(isset($_GET['action']) && $_GET['action'] == 'edit-user-pass'): ?>
 
                         <div class="col-md-6 col-md-offset-3">
@@ -150,9 +142,51 @@ try {
                         ?>
 
                     <?php endif; ?>
-                    
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    مشاهده سفارشات 
                 </div>
 
+                <div class="panel-body">
+                        
+                    <table class="table table-responsive table-hover">
+                        <thead>
+                            <tr>
+                                <th>آیدی</th>
+                                <th>کاربر</th>
+                                <th>کل پرداختی</th>
+                                <th>کد رهگیری پرداخت</th>
+                                <th>وضعیت</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if ($orders): ?>
+                        <?php foreach ($orders as $order): ?>
+                            <tr>
+                                <td><?php echo $order->id; ?></td>
+                                <td><?php echo $user->name; ?></td>
+                                <td><?php echo number_format($order->total_price); ?></td>
+                                <td><?php echo $order->track_code; ?></td>
+                                <td>
+                                    <?php if ($order->is_confirmed == 1): ?>
+                                        <span class="text-success">تایید شده</span>
+                                    <?php else: ?>
+                                        <span class="text-danger">تایید نشده</span>
+                                    <?php endif; ?>
+                                </td>
+                                <!-- <td><a href="?action=view-order&id=<?= $order->id; ?>" class="btn btn-info">مشاهده جزییات</a></td> -->
+                            </tr>
+                        <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="text-center">سفارشی یافت نشد</div>
+                        <?php endif; ?>
+                        </tbody>
+                    </table>
+
+                </div>
 
             </div>
         
@@ -160,17 +194,12 @@ try {
 
     </div>
 
-
 </div>
-
-
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
     <!-- Morris Charts JavaScript -->
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
