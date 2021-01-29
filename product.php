@@ -9,20 +9,15 @@ $product = Product::findById($_GET['id']);
 $product_cat = Category::findById($product->cat_id);
 ?>
 <!-- Body Start -> in main-header -->
-
-
     <div class="master-wrapper">
-     
     <!--  ==========  -->
     <!--  = Header =  -->
     <!--  ==========  -->
     <?php include('tmp-inc/header-body.php'); ?> 
-    
     <!--  ==========  -->
     <!--  = Main Menu / navbar =  -->
     <!--  ==========  -->
     <?php include('tmp-inc/navigation.php'); ?> 
-
     <!--  ==========  -->
     <!--  = Breadcrumbs =  -->
     <!--  ==========  -->
@@ -31,35 +26,27 @@ $product_cat = Category::findById($product->cat_id);
         	<div class="row">
         		<div class="span12">
         		    <ul class="breadcrumb">
-	                    <li>
-	                        <a href="index.html">وبمارکت</a>
+                        <li>
+	                        <a href="<?= SITE_URL . DS . "category.php?id=-1"; ?>">فروشگاه</a>
 	                    </li>
 	                    <li><span class="icon-chevron-right"></span></li>
 	                    <li>
-	                        <a href="shop.html">فروشگاه</a>
+	                        <a href="<?= SITE_URL . DS ?>category.php?id=<?= $product_cat->id; ?>"><?= $product_cat->title; ?></a>
 	                    </li>
-	                    <li><span class="icon-chevron-right"></span></li>
-	                    <li>
-	                        <a href="category.php?id=<?= $product_cat->id; ?>"><?= $product_cat->title; ?></a>
-	                    </li>
-	                    
 	                </ul>
         		</div>
         	</div>
         </div>
     </div>
-
     <!--  ==========  -->
     <!--  = Main container =  -->
     <!--  ==========  -->
     <div class="container">
         <div class="push-up top-equal blocks-spacer">
-            
             <!--  ==========  -->
             <!--  = Product =  -->
             <!--  ==========  -->
             <div class="row blocks-spacer">
-                
                 <!--  ==========  -->
                 <!--  = Preview Images =  -->
                 <!--  ==========  -->
@@ -70,7 +57,6 @@ $product_cat = Category::findById($product->cat_id);
                         </div>
                     </div>
                 </div>
-                
                 <!--  ==========  -->
                 <!--  = Title and short desc =  -->
                 <!--  ==========  -->
@@ -85,7 +71,6 @@ $product_cat = Category::findById($product->cat_id);
                             <?php else: ?>
                                 <span class="btn btn-success">موجود</span> 
                             <?php endif; ?>
-
                             </span>
                         </div>
                     </div>
@@ -94,12 +79,10 @@ $product_cat = Category::findById($product->cat_id);
                         <?= substr($product->description, 0, 400); ?> ...
                         </p>
                         <hr />
-                        
                         <!--  ==========  -->
                         <!--  = Add to cart form =  -->
                         <!--  ==========  -->
                         <?php
-                
                         // check if add-to-cart button is submitted
                         if (isset($_POST['add_to_cart'])) {
                             $pr_id    = $_POST['product_id'];
@@ -141,7 +124,6 @@ $product_cat = Category::findById($product->cat_id);
                                     'quantity' => $_POST['product_count']
                                 ];
                                 echo "<script>alert('محصول مورد نظر با موفقیت به سبد خرید اضافه شد');</script>";
-                            
                             }
                         }
                         ?>
@@ -225,9 +207,9 @@ $product_cat = Category::findById($product->cat_id);
             <!--  ==========  -->
             <!--  = Related products =  -->
             <!--  ==========  -->
-            <div class="row popup-products">
+            <div class="row">
 
-            <?php   $products = classes\Product::findAllWhere([['cat_id', '=', $product->cat_id, 1, 'asc']]); ?>
+            <?php   $products = classes\Product::findAllWhere([['cat_id', '=', $product->cat_id, 1]], 3, "", "RAND()"); ?>
             <?php foreach ($products as $product): ?>
     	            	<!--  ==========  -->
     					<!--  = Product =  -->

@@ -5,13 +5,13 @@
     <!--  = FB =  -->
     
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
+    <script>/*(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=126780447403102";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));*/</script>
     
     <!--  = jQuery - CDN with local fallback =  -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

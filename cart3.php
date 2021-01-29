@@ -35,7 +35,7 @@ include('tmp-inc/header-main.php'); ?>
                     		<header>
                     		    <div class="row">
                     		    	<div class="span2">
-                    		    		<a href="index.html"><img src="images/logo-bw.png" alt="Webmarket Logo" width="48" height="48" /></a>
+                    		    		<a href="<?= SITE_URL . DS . "index.php"; ?>"><img src="images/logo-bw.png" alt="Webmarket Logo" width="48" height="48" /></a>
                     		    	</div>
                     		    	<div class="span6">
                     		    	    <div class="center-align">
@@ -67,14 +67,14 @@ include('tmp-inc/header-main.php'); ?>
 									if ($order->makeOrder($_SESSION['order_detail']['prodcuts'])) {
 										unset($_SESSION['cart']);
 										unset($_SESSION['order_detail']);
-										echo "<script>alert('سفارش شما با موفقیت ثبت شد پس از تایید به آدرسی که در بخش کاربری خود ثبت کرده اید ارسال خواهد شد');</script>";
-										// echo "<script>alert(\"'window.location.href = \"";'\");</script>";
-										// sleep(5);
-										Utility::redirect("index.php");
+									
+										echo "<script>alert('سفارش شما با موفقیت ثبت شد و بعد از تایید به آدرس شما ارسال می شود');</script>";
+										echo "<script>location.replace('index.php');</script>";
 									}
                                 }
 							}
 							?>
+							
                             <form action="" method="POST">
                                 <label for="cart">
                                     کد رهگیری را وارد کنید
@@ -87,13 +87,6 @@ include('tmp-inc/header-main.php'); ?>
                                 </div>
                             </form>                          
                             <p style="margin-top: 400px;"></p>
-		
-							<hr />
-							<div class=""></div>
-							<p class="right-align">
-							    در صورت پرداخت موفق به صفحه بعدی رفته و کد رهگیری را وارد کنید
-							    <a href="cart3.php" class="btn btn-primary higher bold">ادامه</a>
-							</p>
                     	</div>
                     </div>
                 </div>

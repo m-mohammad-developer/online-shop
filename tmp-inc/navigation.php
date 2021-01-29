@@ -18,38 +18,23 @@
                 <div class="nav-collapse collapse">
                   <ul class="nav" id="mainNavigation">
                     <li class="dropdown active">
-                        <a href="index.php"> خانه</a>
+                        <a href="<?= SITE_URL . DS . "index.php"; ?>"> خانه</a>
                     </li>
                     
                     <li class="dropdown">
-                        <a href="shop.html" class="dropdown-toggle"> فروشگاه <b class="caret"></b> </a>
+                        <a href="<?= SITE_URL . DS . "category.php?id=-1"; ?>" class="dropdown-toggle"> فروشگاه <b class="caret"></b> </a>
                         <ul class="dropdown-menu">
                         <?php foreach(classes\Category::findAll() as $cat): ?>
-                            <li><a href="category.php?id=<?= $cat->id; ?>"><?= $cat->title; ?></a></li>
+                            <li><a href="<?= SITE_URL . DS . "category.php"; ?>?id=<?= $cat->id; ?>"><?= $cat->title; ?></a></li>
                         <?php endforeach; ?>
                         </ul>
                     </li>
                     
-                    <li class="dropdown">
-                        <a href="blog.html" class="dropdown-toggle">بلاگ <b class="caret"></b> </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="404.html">صفحه 404</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="features.html" class="dropdown-toggle">امکانات <b class="caret"></b> </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="icons.html">آیکن ها</a></li>
-                            <li class="dropdown">
-                                <a href="features.html" class="dropdown-toggle"><i class="icon-caret-left pull-right visible-desktop"></i> همه امکانات</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="features.html#headings">سرخط ها</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="about-us.html">درباره ما</a></li>
-                    <li><a href="contact.html">تماس با ما</a></li>
+                    <li><a href="<?= SITE_URL . DS . "about-us.php"; ?>">درباره ما</a></li>
+                    <li><a href="<?= SITE_URL . DS . "contact-us.php"; ?>">تماس با ما</a></li>
+                    <?php if (isset($_SESSION['user_info'])): ?>
+                    <li><a href="<?= SITE_URL . DS . "user.php"; ?>"> ناحیه کاربری</a></li>
+                    <?php endif; ?>
                   </ul>
                   
                   <!--  ==========  -->

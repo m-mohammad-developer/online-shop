@@ -2,6 +2,8 @@
 <link rel="stylesheet" href="css/style.css">
 <?php use classes\User, classes\Admin, classes\Utility; ?>
 <?php 
+$error = "";
+
 if (isset($_POST['login_admin'])) {
 
     $email = $_POST['email'];
@@ -9,6 +11,8 @@ if (isset($_POST['login_admin'])) {
 
     if (Admin::login($email, $pass)) {
         Utility::redirect('admin/');
+    } else {
+      $error = "رمز عبور یا نام کاربری شما اشتباه است";
     }
 }
 
@@ -20,12 +24,16 @@ if (isset($_POST['login_user'])) {
 
   if (User::login($email, $pass)) {
       Utility::redirect('./user.php');
+  } else {
+      $error = "رمز عبور یا نام کاربری شما اشتباه است";
   }
 }
 ?>
 
 <div class="container">
   <section id="content">
+  
+      <?= !empty($error) ? "<div style='color: red; text-align: center;'>" . $error . "</div>" : ''; ?>
     <form action="" method="post">
       <h1>فرم ورود</h1>
       <div>
@@ -38,7 +46,7 @@ if (isset($_POST['login_user'])) {
         <input type="submit" value="ورود / مدیر" name="login_admin"/>
         <input type="submit" value="ورود / کاربر" name="login_user"/>
         <!-- <a href="#">Lost your password?</a> -->
-        <a href="#">ثبت نام</a>
+        <a href="register.php">ثبت نام</a>
       </div>
     </form><!-- form -->
     

@@ -51,7 +51,7 @@ include('tmp-inc/header-main.php'); ?>
                     		<header>
                     		    <div class="row">
                     		    	<div class="span2">
-                    		    		<a href="index.html"><img src="images/logo-bw.png" alt="Webmarket Logo" width="48" height="48" /></a>
+                    		    		<a href="<?= SITE_URL . DS . "index.php"; ?>"><img src="images/logo-bw.png" alt="Webmarket Logo" width="48" height="48" /></a>
                     		    	</div>
                     		    	<div class="span6">
                     		    	    <div class="center-align">

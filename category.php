@@ -4,8 +4,18 @@
 <?php if (!isset($_GET['id']) || empty($_GET['id'])) Utility::redirect("index.php");  ?>
 <?php     
 try {
-    $products = Product::findAllWhere([['cat_id', '=', $_GET['id']]], 2);
-    $category = Category::findById(1);
+    if ($_GET['id'] == -1) {
+        $products = Product::findAll();
+        // make a costum object of Category class
+        $category = new Category;
+        $category->id = -1;
+        $category->title = "همه";
+        //
+    } else {
+        // find products by category
+        $products = Product::findAllWhere([['cat_id', '=', $_GET['id']]]);
+        $category = Category::findById($_GET['id']);
+    }
 } catch (PDOException $e) {
     
 }
@@ -29,11 +39,7 @@ try {
         		<div class="span12">
         		    <ul class="breadcrumb">
 	                    <li>
-	                        <a href="index.html">وبمارکت</a>
-	                    </li>
-	                    <li><span class="icon-chevron-right"></span></li>
-	                    <li>
-	                        <a href="shop.html">فروشگاه</a>
+	                        <a href="<?= SITE_URL . DS . "category.php?id=-1"; ?>">فروشگاه</a>
 	                    </li>
 	                    <li><span class="icon-chevron-right"></span></li>
 	                    <li>
@@ -63,19 +69,9 @@ try {
                                     <select id="isotopeSorting" class="span3">
                                         <option value='{"sortBy":"price", "sortAscending":"true"}'>بر اساس قیمت (کم به زیاد) &uarr;</option>
                                         <option value='{"sortBy":"price", "sortAscending":"false"}'>بر اساس قیمت (زیاد به کم) &darr;</option>
-                                        
-                                        <!-- 
-                                        <option value='{"sortBy":"name", "sortAscending":"true"}'>بر اساس نام (صعودی) &uarr;</option>
-                                        <option value='{"sortBy":"name", "sortAscending":"false"}'>بر اساس نام (نزولی) &darr;</option>
-                                        -->
+                                       
                                     </select>
                                     
-                                    <label for="numberShown" class="black-clr">نمایش:</label>
-                                    <select id="numberShown" class="span1">
-                                        <option value="9">9</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                    </select>
                                 </div>
                             </div> <!-- /sorting and number shown -->
                         </div>
@@ -127,20 +123,7 @@ try {
                 	</div> <!-- /popup-products -->
                 	<hr />
         	
-                	<!--  ==========  -->
-					<!--  = Pagination =  -->
-					<!--  ==========  -->
-            	    <div class="pagination pagination-centered">
-                        <ul>
-                            <li><a href="#" class="btn btn-primary"><span class="icon-chevron-left"></span></a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#" class="btn btn-primary"><span class="icon-chevron-right"></span></a></li>
-                        </ul>
-                    </div> <!-- /pagination -->
+                	
                 </section> <!-- /span12 -->
             </div>
         </div>
@@ -149,7 +132,7 @@ try {
     <!--  ==========  -->
     <!--  = Footer =  -->
     <!--  ==========  -->
-        <?php include('tmp-inc/footer-body.php'); ?>
+    <?php include('tmp-inc/footer-body.php'); ?>
 
     </div> <!-- end of master-wrapper -->
     

@@ -46,10 +46,8 @@ if (isset($_POST['regect_order'])) {
             <div class="panel-heading">
                 جزییات محصول
             </div>
-
             <div class="panel-body">
-
-                
+   
             <table class="table table-responsive">
                 <thead>
                     <tr>

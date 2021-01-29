@@ -46,7 +46,7 @@ class Main
             $items[] = $arr[0] . " " . $arr[1] . " ?";
             $values[] = $arr[2];
         }
-    
+        
         $order = strtoupper($order);
         // die("Select * from ". static::$db_name . " where " . implode(', ', $items) . " LIMIT {$limit} ORDER BY " . static::$auto_inc . " " . $order);
         if (!isset($limit))
