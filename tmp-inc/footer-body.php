@@ -9,8 +9,8 @@
             <div class="container">
                 <div class="row">
                     <div class="span12">
-                        <h2 class="pacifico">Alix &nbsp; <img src="images/webmarket.png" alt="Webmarket Cart" class="align-baseline" /></h2>
-                        <p>این یک نوشته آزمایشی است. شما میتوانید این قسمت را با نوشته های دلخواه خود که مناسب این ناحیه باشند پر نمایید. ما این بخش را با نوشته هایی بی معنی پر کرده ایم.</p>
+                        <h2 class="pacifico"><?= SITE_TITLE; ?> &nbsp; <img src="images/webmarket.png" alt="Webmarket Cart" class="align-baseline" /></h2>
+                        <p><?= SITE_INFO['about']; ?></p>
                     </div>
                     
                 </div>

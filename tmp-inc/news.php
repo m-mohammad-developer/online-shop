@@ -25,53 +25,24 @@
     		<div class="row">
     		    <div class="span12">
     		        <div class="carouFredSel" data-nav="tweets" data-autoplay="false">
-    		             
-    		                
+    		            <?php $newses = classes\News::findAll(); ?>      
 		                <!--  ==========  -->
 						<!--  = Slide =  -->
 						<!--  ==========  --> 
-                        <div class="slide">
-                        	<div class="row">
-                        		<div class="span6">
-                        		    <div class="news-item">
-                        		        <div class="published">12 بهمن 1392</div>
-                        		        <h6><a href="#">عنوان خبر شما</a></h6>
-                        		        <p>در این قسمت میتوانید خبر خود را بنویسید. این یک نوشته ی آزمایشی است که صرفا برای پر کردن این بخش به کار رفته و جنبه ی دیگری ندارد. شما میتوانید این ناحیه را با محتوای دلخواه خود پر کنید.</p>
-                        		    </div>
-                        		</div>
-                        		<div class="span6">
-                        		    <div class="news-item">
-                        		        <div class="published">15 بهمن 1392</div>
-                        		        <h6><a href="#">یک خبر جالب دیگر</a></h6>
-                        		        <p>در این قسمت میتوانید خبر خود را بنویسید. این یک نوشته ی آزمایشی است که صرفا برای پر کردن این بخش به کار رفته و جنبه ی دیگری ندارد. شما میتوانید این ناحیه را با محتوای دلخواه خود پر کنید.</p>
-                        		    </div>
-                        		</div>
-                        	</div>
-                        </div> <!-- /slide -->
-                         
-    		                
-		                <!--  ==========  -->
-						<!--  = Slide =  -->
-						<!--  ==========  --> 
-                        <div class="slide">
-                        	<div class="row">
-                        		<div class="span6">
-                        		    <div class="news-item">
-                        		        <div class="published">12 بهمن 1392</div>
-                        		        <h6><a href="#">عنوان خبر شما</a></h6>
-                        		        <p>در این قسمت میتوانید خبر خود را بنویسید. این یک نوشته ی آزمایشی است که صرفا برای پر کردن این بخش به کار رفته و جنبه ی دیگری ندارد. شما میتوانید این ناحیه را با محتوای دلخواه خود پر کنید.</p>
-                        		    </div>
-                        		</div>
-                        		<div class="span6">
-                        		    <div class="news-item">
-                        		        <div class="published">15 بهمن 1392</div>
-                        		        <h6><a href="#">یک خبر جالب دیگر</a></h6>
-                        		        <p>در این قسمت میتوانید خبر خود را بنویسید. این یک نوشته ی آزمایشی است که صرفا برای پر کردن این بخش به کار رفته و جنبه ی دیگری ندارد. شما میتوانید این ناحیه را با محتوای دلخواه خود پر کنید.</p>
-                        		    </div>
-                        		</div>
-                        	</div>
-                        </div> <!-- /slide -->
-                         
+						<?php if ($newses): ?>
+							<?php foreach ($newses as $news): ?>
+								<div class="slide">
+									<div class="row">
+										<div class="span12">
+											<div class="news-item">
+												<div class="published"><?= $news->created_at; ?></div>
+												<p><?= $news->text; ?></p>
+											</div>
+										</div>
+									</div>
+								</div> <!-- /slide -->
+							<?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
     		    </div>
     		</div> <!-- /news content -->

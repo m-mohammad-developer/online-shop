@@ -10,7 +10,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php"> پنل مدیریت</a>
+                <a class="navbar-brand" href="ُindex.php"> پنل مدیریت</a>
+                <a class="navbar-brand" target="blank" href="../index.php"> مشاهده سایت</a>
             </div>
 
 

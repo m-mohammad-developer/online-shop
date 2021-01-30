@@ -29,9 +29,7 @@
                         <?php endforeach; ?>
                         </ul>
                     </li>
-                    
-                    <li><a href="<?= SITE_URL . DS . "about-us.php"; ?>">درباره ما</a></li>
-                    <li><a href="<?= SITE_URL . DS . "contact-us.php"; ?>">تماس با ما</a></li>
+                    <li><a href="<?= SITE_URL . DS . "contact-us.php"; ?>"> درباره ما / تماس با ما</a></li>
                     <?php if (isset($_SESSION['user_info'])): ?>
                     <li><a href="<?= SITE_URL . DS . "user.php"; ?>"> ناحیه کاربری</a></li>
                     <?php endif; ?>

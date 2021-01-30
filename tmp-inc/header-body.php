@@ -11,7 +11,7 @@
                 <div class="span7">
                     <a class="brand" href="index.php">
                         <img src="images/logo.png" alt="Webmarket Logo" width="48" height="48" /> 
-                        <span class="pacifico">Alix</span> 
+                        <span class="pacifico"><?= SITE_TITLE; ?></span> 
                         <span class="tagline"> خوش آمدید</span> 
                     </a>
                 </div>
@@ -29,14 +29,10 @@
                         </div>
                     </div>
                     <div class="top-right">
-                        <div class="icons">
-                            <a href="#"><span class="zocial-facebook"></span></a>
-                            <a href="#"><span class="zocial-skype"></span></a>
-                            <a href="#"><span class="zocial-apple"></span></a>
-                        </div>
+                        
                         <div class="register">
                             <a href="#loginModal" role="button" data-toggle="modal">ورود</a> یا  
-                            <a href="#registerModal" role="button" data-toggle="modal">ثبت نام</a>
+                            <a href="<?= SITE_URL . DS . "register.php"; ?>" role="button" data-toggle="modal">ثبت نام</a>
                         </div>
                     </div>
                 </div> <!-- /social icons -->

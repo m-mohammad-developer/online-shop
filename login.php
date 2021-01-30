@@ -5,6 +5,8 @@
 $error = "";
 
 if (isset($_POST['login_admin'])) {
+  if (isset($_SESSION['admin_info'])) 
+    Utility::redirect("admin.php");
 
     $email = $_POST['email'];
     $pass = $_POST['password'];
@@ -19,9 +21,11 @@ if (isset($_POST['login_admin'])) {
 
 if (isset($_POST['login_user'])) {
 
+  if (isset($_SESSION['user_info'])) 
+    Utility::redirect("user.php");
   $email = $_POST['email'];
   $pass = $_POST['password'];
-
+  
   if (User::login($email, $pass)) {
       Utility::redirect('./user.php');
   } else {

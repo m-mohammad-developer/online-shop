@@ -95,10 +95,6 @@
                 <!--  ==========  -->
             	<div class="main-titles lined">
             	    <h2 class="title"><span class="light">محصولات</span> جدید</h2>
-            	    <div class="arrows">
-                        <a href="#" class="icon-chevron-right" id="featuredItemsRight"></a>
-                        <a href="#" class="icon-chevron-left" id="featuredItemsLeft"></a>
-                    </div>
             	</div>
             </div>
             

@@ -54,7 +54,7 @@ try {
                     <div class="underlined push-down-20">
                         <div class="row">
                             <div class="span6">
-                                <h3><span class="light">همه</span> محصولات در : <?=  substr($_GET['q'],0, 100); ?></h3>
+                                <h3><span class="light"></span>  جستجو برای  : <?=  substr($_GET['q'],0, 100); ?></h3>
                             </div>
                             <div class="span6">
                                 <div class="form-inline sorting-by">
