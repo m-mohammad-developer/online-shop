@@ -22,6 +22,10 @@ class Main
         return $this->errors;
     }
 
+    public static function searchForIn($query, $column)
+    {
+        return static::findAllWhere([[$column, 'LIKE', "%{$query}%"]]);
+    }
     /**
      * Find All Rows in Database belongs to this class
      */
@@ -135,7 +139,8 @@ class Main
     }
 
 
-    public function save(){
+    public function save()
+    {
         return isset($this->id) ? $this->update() : $this->create();
     }
 
@@ -150,15 +155,18 @@ class Main
 
 
 
-    /**
-     * Helper Methods
-     */
+    /************************************** Helper Methods **************************************/
 
 
      /**
+      * params : 
      * [
      *  prop1 => value1
      *  prop2 => value2
+     * ]
+     * output:
+     * [
+     *  
      * ]
      */ 
     public static function properties($object)

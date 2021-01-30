@@ -71,7 +71,7 @@
     <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="loginModalLabel"><span class="light">ورود</span> در وبمارکت</h3>
+            <h3 id="loginModalLabel"><span class="light">ورود</span> به بخش کاربری</h3>
         </div>
         <div class="modal-body">
             <form method="post" action="login.php">
@@ -103,7 +103,8 @@
     </div>
     
     <!--  = Register =  -->
-    <div id="registerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+
+    <!-- <div id="registerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3 id="registerModalLabel"><span class="light">عضویت</span> در وبمارکت</h3>
@@ -137,6 +138,6 @@
             </p>
             
         </div>
-    </div>
+    </div> -->
     
     

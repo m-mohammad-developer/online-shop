@@ -39,26 +39,6 @@ class Product extends Main
     );
 
     /*********************** Methods *************************** */
-    /**
-     *  set $_FILES variable's indexes to properties
-     */
-    /*
-     public function setPhotoInfo(array $photo)
-    {
-        // die($this->upload_directory);
-        if(empty($photo) || !is_array($photo) || !$photo) {
-            $this->errors = "هیچ فایلی آپلود مشده است";
-
-        } else if($photo['error'] != 0) {
-            $this->errors[] = $this->upload_errors[$photo['error']];
-            return false;
-        } else {            
-            $this->photo_name = $photo['name'];
-            $this->photo_tmp  = $photo['tmp_name'];
-            return true;
-        }
-    }
-    */
     public function uploadPhoto($photo)
     {
         if (!isset($photo['name']) || !isset($photo['tmp_name'])) {

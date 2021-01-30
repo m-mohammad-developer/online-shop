@@ -40,9 +40,9 @@
                   <!--  ==========  -->
                   <!--  = Search form =  -->
                   <!--  ==========  -->
-                  <form class="navbar-form pull-right" action="#" method="get">
+                  <form class="navbar-form pull-right" action="<?= SITE_URL . DS . "search.php"; ?>" method="get">
                       <button type="submit"><span class="icon-search"></span></button>
-                      <input type="text" class="span1" name="search" id="navSearchInput">
+                      <input type="text" class="span1" name="q" id="navSearchInput">
                   </form>
                 </div><!-- /.nav-collapse -->
             </div>

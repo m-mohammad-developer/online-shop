@@ -75,7 +75,15 @@
                     </li>
 
                     <li>
-                        <a href="orders.php"><i class="fa fa-fw fa-users"></i> سفارشات</a>
+                        <a href="orders.php"><i class="fa fa-fw fa-"></i> سفارشات</a>
+                    </li>
+
+                    <li>
+                        <a href="slider.php"><i class="fa fa-fw fa-sliders"></i> اسلایدر</a>
+                    </li>
+
+                    <li>
+                        <a href="news.php"><i class="fa fa-fw fa-hacker-news"></i> اخبار</a>
                     </li>
 
                     <li class="active">

@@ -17,7 +17,7 @@
     <!--  ==========  -->
     <!--  = Slider Revolution =  -->
     <!--  ==========  -->
-    <?php include('tmp-inc/banner-slider.php'); ?>
+    <?php  include('tmp-inc/banner-slider.php'); ?>
     <!--  ==========  -->
     <!--  = Main container =  -->
     <!--  ==========  -->
@@ -216,7 +216,7 @@
     <!--  ==========  -->
     <!--  = Brands Carousel =  -->
     <!--  ==========  -->
-    <?php include('tmp-inc/brands.php'); ?>
+    <?php // include('tmp-inc/brands.php'); ?>
      
     <!--  ==========  -->
     <!--  = Footer =  -->
