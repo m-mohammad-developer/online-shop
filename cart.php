@@ -1,8 +1,6 @@
 <?php
-
 use classes\Product;
 use classes\Utility;
-
 include('tmp-inc/header-main.php'); ?> 
     <div class="master-wrapper">
 	<?php
