@@ -87,9 +87,11 @@
                         <a href="news.php"><i class="fa fa-fw fa-hacker-news"></i> اخبار</a>
                     </li>
 
-                    <li class="active">
-                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> راست</a>
+                    <li>
+                        <a href="contact_page.php"><i class="fa fa-fw fa-hacker-news"></i> تماس با ما / درباره ما</a>
                     </li>
+
+                   
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
