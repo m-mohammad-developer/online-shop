@@ -4,12 +4,13 @@
 !defined("DS") ? define("DS", DIRECTORY_SEPARATOR) : "";
 
 // site path
-!defined("SITE_ROOT") ? define("SITE_ROOT", "C:/xampp/htdocs/shop/") : "";
+!defined("SITE_ROOT") ? define("SITE_ROOT", "/home/mohammad/Desktop/server/online-shop/") : "";
 // site url
-!defined("SITE_URL") ? define("SITE_URL", "http://localhost/shop") : "";
+!defined("SITE_URL") ? define("SITE_URL", "http://server.com/online-shop") : "";
 // View Files Path
 !defined("VIEW_PATH") ? define("VIEW_PATH", SITE_ROOT . "admin/views/") : "";
 
+// View Files Path
 // upload dircetory path
 !defined("UPLOAD_DIR") ? define("UPLOAD_DIR", SITE_ROOT . "uploads" ) : "";
 // setting file path
